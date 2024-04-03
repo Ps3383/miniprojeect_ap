@@ -2,27 +2,36 @@
 #include <iostream>
 using namespace std;
 
-int teacher::teacher_id = 0;
+int Teacher::teacher_id = 0;
+int Teacher::count_teacher_obj = 0;
 
-teacher::teacher(string _name, string _username, string _password) {
-	this->name = _name;
-	this->username = _username;
-	this->password = _password;
+Teacher::Teacher(string _name, string _username, string _password, int _idt) {
+	this->Name = _name;
+	this->Username = _username;
+	this->Password = _password;
+	this->teacher_id = _idt;
 	teacher_id = teacher_id + 2;
+	++count_teacher_obj;
 }
 
-teacher::~teacher() {
+Teacher::~Teacher() {
 	//nothing now
 }
 
-string teacher::get_name() const { return name; }
-void teacher::set_name(string _name) { name = _name; }
+string Teacher::get_name() const { return Name; }
+void Teacher::set_name(string _name) { Name = _name; }
 
-string teacher::get_username() const { return username; }
-void teacher::set_username(string _username) { username = _username; }
+string Teacher::get_username() const { return Username; }
+void Teacher::set_username(string _username) { Username = _username; }
 
-string teacher::get_password() const { return password; }
-void teacher::set_password(string _password) { password = _password; }
+string Teacher::get_password() const { return Password; }
+void Teacher::set_password(string _password) { Password = _password; }
 
+int Teacher::get_count_teacher_obj() { return count_teacher_obj; }
 
+void Teacher::print_teacher(Teacher te) {
+	cout << te.get_name() << endl;
+	cout << te.get_username() << endl;
+	cout << te.get_password();
+}
 

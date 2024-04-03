@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="admin.cpp" />
+    <ClCompile Include="admin.h" />
     <ClCompile Include="miniprojeect_ap.cpp" />
     <ClCompile Include="student_codes.cpp" />
     <ClCompile Include="teacher_codes.cpp" />

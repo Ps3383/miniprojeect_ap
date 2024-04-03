@@ -3,15 +3,16 @@
 #define TEACHER_H
 #include<iostream>
 using namespace std;
-class teacher {
+class Teacher {
 private:
-	string name;
-	string username;
-	string password;
+	string Name;
+	string Username;
+	string Password;
 	static int teacher_id;
+	static int count_teacher_obj;
 public:
-	teacher(string _name, string _username, string _password);
-	~teacher();
+	Teacher(string _name="", string _username="", string _password="", int _idt=-1);
+	~Teacher();
 
 	string get_name() const ;
 	void set_name(string __name);
@@ -21,6 +22,9 @@ public:
 
 	string get_password() const ;
 	void set_password(string __password);
+
+	int get_count_teacher_obj();
+	void print_teacher(Teacher te);
 };
 
 #endif

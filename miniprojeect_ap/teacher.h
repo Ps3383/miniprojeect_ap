@@ -8,23 +8,28 @@ private:
 	string Name;
 	string Username;
 	string Password;
-	static int teacher_id;
+	int Teacher_ID;
 	static int count_teacher_obj;
+	static int number_t;
 public:
-	Teacher(string _name="", string _username="", string _password="", int _idt=-1);
+	Teacher(string _name = "", string _username = "", string _password = "");
 	~Teacher();
 
-	string get_name() const ;
+	string get_name() const;
 	void set_name(string __name);
 
-	string get_username() const ;
+	string get_username() const;
 	void set_username(string __username);
 
-	string get_password() const ;
+	string get_password() const;
 	void set_password(string __password);
 
+	int get_teacher_id();
+
 	int get_count_teacher_obj();
+
 	void print_teacher(Teacher te);
+
 };
 
 #endif

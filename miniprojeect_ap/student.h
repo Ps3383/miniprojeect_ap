@@ -8,10 +8,11 @@ private:
 	string Name;
 	string Username;
 	string Password;
-	static int student_id;
+	int Student_ID;
 	static int count_student_obj;
+	static int number_s;
 public:
-	Student(string _name="", string _username="", string _password="" , int _ids=-5);
+	Student(string _name="", string _username="", string _password="");
 	~Student();
 
 	string get_name() const;
@@ -23,7 +24,10 @@ public:
 	string get_password() const;
 	void set_password(string __password);
 
+	int get_student_id();
+
 	int get_count_student_obj();
+
 	void print_student(Student st);
 };
 

@@ -17,96 +17,16 @@ bool isInteger(const string& s) {
     }
     return true;
 }
-void saveTeachersToFile(const Teacher te[], int count) {
-    ofstream outFile("teachers.txt");
-    if (!outFile) {
-        cerr << "Error: Unable to open file teachers.txt" << endl;
-        return;
-    }
-
-    for (int i = 0; i < count; ++i) {
-        outFile << te[i].get_name() << ',' << te[i].get_username() << ',' << te[i].get_password() << '\n';
-    }
-
-    outFile.close();
-    cout << "Teachers data saved to file successfully." << endl;
-}
-
-// Function to read teachers data from file
-void readTeachersFromFile(Teacher te[], int& count) {
-    ifstream inFile("teachers.txt");
-    if (!inFile) {
-        cerr << "Error: Unable to open file teachers.txt" << endl;
-        return;
-    }
-
-    count = 0;
-    string line;
-    while (getline(inFile, line)) {
-        size_t pos1 = line.find(',');
-        size_t pos2 = line.find(',', pos1 + 1);
-        string name = line.substr(0, pos1);
-        string username = line.substr(pos1 + 1, pos2 - pos1 - 1);
-        string password = line.substr(pos2 + 1);
-        te[count].set_name(name);
-        te[count].set_username(username);
-        te[count].set_password(password);
-        count++;
-    }
-
-    inFile.close();
-    cout << "Teachers data read from file successfully." << endl;
-}
-void saveStudentsToFile(const Student st[], int count) {
-    ofstream outFile("students.txt");
-    if (!outFile) {
-        cerr << "Error: Unable to open file students.txt" << endl;
-        return;
-    }
-
-    for (int i = 0; i < count; ++i) {
-        outFile << st[i].get_name() << ',' << st[i].get_username() << ',' << st[i].get_password() << '\n';
-    }
-
-    outFile.close();
-    cout << "Students data saved to file successfully." << endl;
-}
-
-// Function to read students data from file
-void readStudentsFromFile(Student st[], int& count) {
-    ifstream inFile("students.txt");
-    if (!inFile) {
-        cerr << "Error: Unable to open file students.txt" << endl;
-        return;
-    }
-
-    count = 0;
-    string line;
-    while (getline(inFile, line)) {
-        size_t pos1 = line.find(',');
-        size_t pos2 = line.find(',', pos1 + 1);
-        string name = line.substr(0, pos1);
-        string username = line.substr(pos1 + 1, pos2 - pos1 - 1);
-        string password = line.substr(pos2 + 1);
-        st[count].set_name(name);
-        st[count].set_username(username);
-        st[count].set_password(password);
-        count++;
-    }
-
-    inFile.close();
-    cout << "Students data read from file successfully." << endl;
-}
 
 
 int main() {
-
+    Admin admin;
     Student st[2000];
     Teacher te[100];
     int c_teacher = 0;
     int c_student = 0;
-    readTeachersFromFile(te, c_teacher);
-    readStudentsFromFile(st, c_student);
+    admin.readTeachersFromFile(te, c_teacher);
+    admin.readStudentsFromFile(st, c_student);
   string input;
   
       while (true) {
@@ -165,13 +85,14 @@ int main() {
                           te[c_teacher].set_username(username_);
                           te[c_teacher].set_password(password_);    
                           ++c_teacher;
-                          saveTeachersToFile(te, c_teacher);
+                          admin.saveTeachersToFile(te, c_teacher);
                       }
                       else if (command == "2") {
-                          string user;
+                          string user_remove;
                           cout << "Enter teacher_username that you want to delete : ";
-                          cin >> user;
-
+                          cin >> user_remove;
+                          admin.removeTeacher(te, c_teacher, user_remove);
+                          admin.saveTeachersToFile(te, c_teacher);
                       }
                       else if (command == "3") {
                           string name_;
@@ -187,10 +108,14 @@ int main() {
                           st[c_student].set_username(username_);
                           st[c_student].set_password(password_);
                           ++c_student;
-                          saveStudentsToFile(st, c_student);
+                          admin.saveStudentsToFile(st, c_student);
                       }
                       else if (command == "4") {
-
+                          string user_remove;
+                          cout << "Enter student_username that you want to delete : ";
+                          cin >> user_remove;
+                          admin.removeStudent(st, c_student, user_remove);
+                          admin.saveStudentsToFile(st, c_student);
                       }
                       else {
                           string m;

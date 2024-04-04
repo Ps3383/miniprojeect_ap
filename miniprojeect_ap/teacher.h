@@ -2,6 +2,7 @@
 #ifndef TEACHER_H
 #define TEACHER_H
 #include<iostream>
+#include<vector>
 using namespace std;
 class Teacher {
 private:
@@ -29,6 +30,9 @@ public:
 	int get_count_teacher_obj();
 
 	void print_teacher(Teacher te);
+
+	//void add_courses(string course_name);
+	//vector<string> get_courses();
 
 };
 

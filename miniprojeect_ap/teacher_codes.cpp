@@ -31,12 +31,18 @@ int Teacher::get_teacher_id() { return Teacher_ID; }
 
 int Teacher::get_count_teacher_obj() { return count_teacher_obj; }
 
-
-
 void Teacher::print_teacher(Teacher te) {
 	cout << te.get_name() << endl;
 	cout << te.get_username() << endl;
 	cout << te.get_password() << endl;
-	cout << te.get_teacher_id();
+	cout << te.get_teacher_id() << endl;
 }
+
+//void Teacher:: add_courses(string course_name) {
+	//courses.push_back(course_name);
+//}
+//vector<string>Teacher::get_courses() {
+	///return courses;
+//}
+
 

@@ -1,5 +1,6 @@
 #include"admin.h"
 #include <fstream>
+#include<iostream>
 #include <string>
 using namespace std;
 
@@ -136,5 +137,55 @@ void Admin::removeStudent(Student st[], int& count, const string& usernameToRemo
     else {
         cout << "Student with username " << usernameToRemove << " not found." << endl;
     }
+}
+
+bool Admin::login_student(Student st[] , string user, string pass , int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (st[i].get_username() == user && st[i].get_password()==pass) {
+            index = i;
+            return true;
+        }
+    }
+    if (index == -1) { 
+     cout << "Wrong username or password ):\n\n"; 
+     return false;
+    }
+}
+
+bool Admin::login_teacher(Teacher te[] , string user , string pass , int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (te[i].get_username() == user && te[i].get_password()==pass) {
+            index = i;
+            return true;
+        }
+    }
+    if (index == -1) {
+        cout << "Wrong username or password ):\n\n";
+        return false;
+    }
+}
+
+Student Admin::find_student(Student st[], string user, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (st[i].get_username() == user) {
+            index = i;
+            return st[index];
+        }
+    }
+    if (index == -1) { cout << "student cant find ):\n\n";  }
+}
+
+Teacher Admin::find_teacher(Teacher te[], string user, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (te[i].get_username() == user) {
+            index = i;
+            return te[index];
+        }
+    }
+    if (index == -1) { cout << "teacher cant find ):\n\n";  }
 }
 

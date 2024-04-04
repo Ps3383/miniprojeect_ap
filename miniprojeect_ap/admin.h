@@ -20,6 +20,13 @@ public:
 	void saveStudentsToFile(const Student st[], int count);
 	void readStudentsFromFile(Student st[], int& count);
 	void removeStudent(Student st[], int& count, const string& usernameToRemove);
+
+	bool login_student( Student st[],string user, string pass , int count);
+	bool login_teacher( Teacher te[],string user, string pass , int count);
+
+	Student find_student(Student st[], string user, int count);
+	Teacher find_teacher(Teacher te[], string user, int count);
+
 };
 
 

@@ -35,5 +35,13 @@ void Student::print_student(Student st) {
 	cout << st.get_name() << endl;
 	cout << st.get_username() << endl;
 	cout << st.get_password() << endl;
-	cout << st.get_student_id();
+	cout << st.get_student_id() << endl;
+	//cout << st.get_courses() << endl;
 }
+
+//void Student::add_courses(string course_name) {
+//	courses.push_back(course_name);
+///}
+//vector<string>Student::get_courses() {
+	//return courses;
+//}

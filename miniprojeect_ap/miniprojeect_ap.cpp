@@ -75,15 +75,18 @@ int main() {
                           string name_;
                           string username_;
                           string password_;
+                          string course_;
                           cout << "Enter teacher name : ";
                           cin >> name_;
                           cout << "Enter teacher username : ";
                           cin >> username_;
                           cout << "Enter teacher password : ";
                           cin >> password_;
+                          cout << "Enter teacher course : ";
+                          cin >> course_ ;
                           te[c_teacher].set_name(name_);
                           te[c_teacher].set_username(username_);
-                          te[c_teacher].set_password(password_);    
+                          te[c_teacher].set_password(password_); 
                           ++c_teacher;
                           admin.saveTeachersToFile(te, c_teacher);
                       }
@@ -98,12 +101,15 @@ int main() {
                           string name_;
                           string username_;
                           string password_;
+                          string course_;
                           cout << "Enter student name : ";
                           cin >> name_;
                           cout << "Enter student username : ";
                           cin >> username_;
                           cout << "Enter student password : ";
                           cin >> password_;
+                          cout << "Enter student course : ";
+                          cin >> course_;
                           st[c_student].set_name(name_);
                           st[c_student].set_username(username_);
                           st[c_student].set_password(password_);
@@ -136,10 +142,26 @@ int main() {
               }
           }
           else if (input == "2") {
+              string user_;
+              string pass_;
+              cout << "Enter your username : ";
+              cin >> user_;
+              cout << "Enter your password : ";
+              cin >> pass_;
+              if (admin.login_teacher(te, user_, pass_, c_teacher)) {
 
+              }
           }
           else if (input == "3") {
+              string user_;
+              string pass_;
+              cout << "Enter your username : ";
+              cin >> user_;
+              cout << "Enter your password : ";
+              cin >> pass_;
+              if (admin.login_student(st, user_, pass_, c_student)) {
 
+              }
           }
           else if (input == "4") {
               break;

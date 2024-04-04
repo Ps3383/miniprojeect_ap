@@ -2,6 +2,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 #include<iostream>
+#include<vector>
 using namespace std;
 class Student {
 private:
@@ -29,6 +30,9 @@ public:
 	int get_count_student_obj();
 
 	void print_student(Student st);
+
+	//void add_courses(string course_name);
+	//vector<string> get_courses();
 };
 
 #endif

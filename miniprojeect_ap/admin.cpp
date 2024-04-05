@@ -1,6 +1,6 @@
 #include"admin.h"
 #include <fstream>
-#include<iostream>
+//#include<iostream>
 #include <string>
 using namespace std;
 
@@ -175,7 +175,7 @@ Student Admin::find_student(Student st[], string user, int count) {
             return st[index];
         }
     }
-    if (index == -1) { cout << "student cant find ):\n\n";  }
+    if (index == -1) { cout << "Student cant find ):\n\n";  }
 }
 
 Teacher Admin::find_teacher(Teacher te[], string user, int count) {
@@ -186,6 +186,28 @@ Teacher Admin::find_teacher(Teacher te[], string user, int count) {
             return te[index];
         }
     }
-    if (index == -1) { cout << "teacher cant find ):\n\n";  }
+    if (index == -1) { cout << "Teacher cant find ):\n\n";  }
+}
+
+int Admin::find_index_student(Student st[], string user, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (st[i].get_username() == user) {
+            index = i;
+            return index;
+        }
+    }
+    if (index == -1) { cout << "Student cant find ):\n\n"; return -1; }
+}
+
+int Admin::find_index_teacher(Teacher te[], string user, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (te[i].get_username() == user) {
+            index = i;
+            return index;
+        }
+    }
+    if (index == -1) { cout << "Teacher cant find ):\n\n"; return -1; }
 }
 

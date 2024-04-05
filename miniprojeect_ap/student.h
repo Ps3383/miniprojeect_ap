@@ -3,6 +3,7 @@
 #define STUDENT_H
 #include<iostream>
 #include<vector>
+#include<map>
 using namespace std;
 class Student {
 private:
@@ -10,6 +11,9 @@ private:
 	string Username;
 	string Password;
 	int Student_ID;
+
+	map <string, int > Course_Grade;
+
 	static int count_student_obj;
 	static int number_s;
 public:
@@ -31,8 +35,8 @@ public:
 
 	void print_student(Student st);
 
-	//void add_courses(string course_name);
-	//vector<string> get_courses();
+	void set_course_grade(string course_name, int grade);
+	void delete_course(string course_name);
 };
 
 #endif

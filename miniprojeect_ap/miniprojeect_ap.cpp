@@ -27,7 +27,7 @@ int main() {
     int c_teacher = 0;
     int c_student = 0;
     admin.readTeachersFromFile(te, c_teacher);
-    admin.readStudentsFromFile(st, c_student);
+  admin.readStudentsFromFile(st, c_student);
 
       string input;
       while (true) {
@@ -143,7 +143,66 @@ int main() {
               cin >> user_;
               cout << "Enter your password : ";
               cin >> pass_;
+              int index = -1;
               if (admin.login_teacher(te, user_, pass_, c_teacher)) {
+                  index = admin.find_index_teacher(te, user_, c_teacher); //have te_index
+                  te[index].print_teacher(te[index]); // print te info
+                  string in;
+                  while (true)
+                  {
+                      cout << "press 1 to create course\n";
+                      cout << "press 2 to add student to course\n";
+                      cout << "press 3 to remove student from course\n";
+                      cout << "press 4 to set grade for student\n";
+                      cout << "press 5 to exit \n";
+                      cin >> in;
+                      if (!isInteger(in)) {
+                          string m;
+                          cout << "invalid input ! try again\n";
+                          cout << "press any key to back to menu\n";
+                          cin >> m;
+                          continue;
+                      }
+                      if (in == "1") {
+                          string coursename;
+                          cout << "Enter course name that you want to add : ";
+                          cin >> coursename;
+                          te[index].create_course(coursename);
+                      }
+                      else if (in == "2") {
+                          string coursename;
+                          string user_stu;
+                          cout << "Enter course name to add student in : ";
+                          cin >> coursename;
+                          cout << "Enter username_student to add : ";
+                          cin >> user_stu;
+                          if (admin.find_index_student(st, user_stu, c_student) != -1) {
+                              int index_st = admin.find_index_student(st, user_stu, c_student);
+                              te[index].addStudentToCourse(coursename, user_stu);
+                              st[index_st].set_course_grade(coursename , -1);
+                          }
+                      }
+                      else if (in == "3") {
+                          string coursename;
+                          string user_stu;
+                          cout << "Enter course name to delete student from : ";
+                          cin >> coursename;
+                          cout << "Enter username_student to delete from course : ";
+                          cin >> user_stu;
+                          if (admin.find_index_student(st, user_stu, c_student) != -1) {
+                              int index_st = admin.find_index_student(st, user_stu, c_student);
+                              te[index].removeStudentFromCourse(coursename, user_stu);
+                              st[index_st].delete_course(coursename);
+                          }
+                      }
+                      else if (in == "4") {
+
+                      }
+                      else if (in == "5") {
+                          break;
+                      }
+
+                  } //End while for teacher menu
 
               }
           }
@@ -169,7 +228,7 @@ int main() {
               continue;
           }
 
-      }// End while
+      }// End main while
 
   return 0;
 }

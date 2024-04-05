@@ -11,6 +11,10 @@ private:
 	string Username;
 	string Password;
 	int Teacher_ID;
+
+	map<string, vector<string>> courses; // Map to store students for each course
+	map<string, map<string, int>> grades; // Map to store grades for each student in each course
+	
 	static int count_teacher_obj;
 	static int number_t;
 public:
@@ -32,9 +36,11 @@ public:
 
 	void print_teacher(Teacher te);
 
-	//void add_courses(string course_name);
-	//vector<string> get_courses();
-
+	//risssssskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+	void create_course(string course_name);
+	void addStudentToCourse(string course_name, string student_username);
+	void removeStudentFromCourse(string course_name, string student_username);
+	void recordGrade(string course_name, string student_username, int grade);
 };
 
 #endif

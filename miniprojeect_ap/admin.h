@@ -27,6 +27,8 @@ public:
 	Student find_student(Student st[], string user, int count);
 	Teacher find_teacher(Teacher te[], string user, int count);
 
+	int find_index_student(Student st[], string user, int count);
+	int find_index_teacher(Teacher te[], string user, int count);
 };
 
 

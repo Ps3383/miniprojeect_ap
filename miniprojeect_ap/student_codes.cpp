@@ -39,9 +39,16 @@ void Student::print_student(Student st) {
 	//cout << st.get_courses() << endl;
 }
 
-//void Student::add_courses(string course_name) {
-//	courses.push_back(course_name);
-///}
-//vector<string>Student::get_courses() {
-	//return courses;
-//}
+void Student::set_course_grade(string course_name, int grade) {
+	Course_Grade[course_name] = grade;
+}
+
+void Student::delete_course(string course_name) {
+	if (Course_Grade.count(course_name) == 0) {
+		cout << "this Course does not exist for this student\n";
+		return;
+	}
+	Course_Grade.erase(course_name);
+}
+
+

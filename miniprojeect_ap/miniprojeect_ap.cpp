@@ -20,6 +20,7 @@ bool isInteger(const string& s) {
 
 
 int main() {
+
     Admin admin;
     Student st[2000];
     Teacher te[100];
@@ -27,8 +28,8 @@ int main() {
     int c_student = 0;
     admin.readTeachersFromFile(te, c_teacher);
     admin.readStudentsFromFile(st, c_student);
-  string input;
-  
+
+      string input;
       while (true) {
          // system("cls");
           cout << "press 1 to login to admin account\n";
@@ -75,15 +76,12 @@ int main() {
                           string name_;
                           string username_;
                           string password_;
-                          string course_;
                           cout << "Enter teacher name : ";
                           cin >> name_;
                           cout << "Enter teacher username : ";
                           cin >> username_;
                           cout << "Enter teacher password : ";
                           cin >> password_;
-                          cout << "Enter teacher course : ";
-                          cin >> course_ ;
                           te[c_teacher].set_name(name_);
                           te[c_teacher].set_username(username_);
                           te[c_teacher].set_password(password_); 
@@ -101,15 +99,12 @@ int main() {
                           string name_;
                           string username_;
                           string password_;
-                          string course_;
                           cout << "Enter student name : ";
                           cin >> name_;
                           cout << "Enter student username : ";
                           cin >> username_;
                           cout << "Enter student password : ";
                           cin >> password_;
-                          cout << "Enter student course : ";
-                          cin >> course_;
                           st[c_student].set_name(name_);
                           st[c_student].set_username(username_);
                           st[c_student].set_password(password_);
@@ -174,7 +169,7 @@ int main() {
               continue;
           }
 
-      }// end while
+      }// End while
 
   return 0;
 }

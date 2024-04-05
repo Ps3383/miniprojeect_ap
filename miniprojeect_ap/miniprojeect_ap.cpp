@@ -174,7 +174,7 @@ int main() {
                           string user_stu;
                           cout << "Enter course name to add student in : ";
                           cin >> coursename;
-                          cout << "Enter username_student to add : ";
+                          cout << "Enter student_username to add : ";
                           cin >> user_stu;
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
@@ -187,7 +187,7 @@ int main() {
                           string user_stu;
                           cout << "Enter course name to delete student from : ";
                           cin >> coursename;
-                          cout << "Enter username_student to delete from course : ";
+                          cout << "Enter student_username to delete from course : ";
                           cin >> user_stu;
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
@@ -196,7 +196,20 @@ int main() {
                           }
                       }
                       else if (in == "4") {
-
+                          string coursename;
+                          string user_stu;
+                          int grade = 0;
+                          cout << "Enter course name for grade : ";
+                          cin >> coursename;
+                          cout << "Enter student_username to give grade : ";
+                          cin >> user_stu;
+                          cout << "Enter grade : ";
+                          cin >> grade;
+                          if (admin.find_index_student(st, user_stu, c_student) != -1) {
+                              int index_st = admin.find_index_student(st, user_stu, c_student);
+                              st[index_st].set_course_grade(coursename, grade);
+                              te[index].recordGrade(coursename, user_stu, grade);
+                          }
                       }
                       else if (in == "5") {
                           break;
@@ -214,6 +227,10 @@ int main() {
               cout << "Enter your password : ";
               cin >> pass_;
               if (admin.login_student(st, user_, pass_, c_student)) {
+
+
+
+
 
               }
           }

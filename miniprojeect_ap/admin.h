@@ -34,7 +34,7 @@ public:
 	void change_pass_student(Student st[], string user, string newpass, int count);
 
 	void restore_student();
-	void restore_teacher();
+	void moveto_restore(const Teacher te[], string user, int count);
 
 };
 

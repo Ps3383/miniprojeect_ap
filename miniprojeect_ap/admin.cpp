@@ -243,8 +243,21 @@ void Admin::restore_student() {
 
 }
 
-void Admin::restore_teacher() {
+void Admin::moveto_restore(const Teacher te[],string user ,int count) {
 
-
+    ofstream outFile("restore_teachers.txt");
+    if (!outFile) {
+        cerr << "Error: Unable to open file teachers.txt" << endl;
+        return;
+    }
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (te[i].get_username() == user) {
+            index = i;
+        }
+    }
+        outFile << te[index].get_name() << ',' << te[index].get_username() << ',' << te[index].get_password() << '\n';
+    outFile.close();
+    cout << "Teachers data saved to file successfully." << endl;
 
 }

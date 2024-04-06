@@ -92,6 +92,7 @@ int main() {
                           string user_remove;
                           cout << "Enter teacher_username that you want to delete : ";
                           cin >> user_remove;
+                          admin.moveto_restore(te, user_remove, c_teacher);
                           admin.removeTeacher(te, c_teacher, user_remove);
                           admin.saveTeachersToFile(te, c_teacher);
                       }

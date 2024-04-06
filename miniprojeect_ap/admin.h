@@ -29,6 +29,13 @@ public:
 
 	int find_index_student(Student st[], string user, int count);
 	int find_index_teacher(Teacher te[], string user, int count);
+
+	void change_pass_teacher(Teacher te[], string user, string newpass, int count);
+	void change_pass_student(Student st[], string user, string newpass, int count);
+
+	void restore_student();
+	void restore_teacher();
+
 };
 
 

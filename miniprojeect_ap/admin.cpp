@@ -211,3 +211,40 @@ int Admin::find_index_teacher(Teacher te[], string user, int count) {
     if (index == -1) { cout << "Teacher cant find ):\n\n"; return -1; }
 }
 
+void Admin::change_pass_student(Student st[], string user, string newpass, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (st[i].get_username() == user) {
+            index = i;
+        }
+    }
+    if (index != -1) {
+        st[index].set_password(newpass);
+        cout << "Your password changed successfully\n";
+    }
+}
+
+void Admin::change_pass_teacher(Teacher te[], string user, string newpass, int count) {
+    int index = -1;
+    for (int i = 0; i < count; ++i) {
+        if (te[i].get_username() == user) {
+            index = i;
+        }
+    }
+    if (index != -1) {
+        te[index].set_password(newpass);
+        cout << "Your password changed successfully\n";
+    }
+}
+
+void Admin::restore_student() {
+
+
+
+}
+
+void Admin::restore_teacher() {
+
+
+
+}

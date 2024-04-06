@@ -41,6 +41,8 @@ public:
 	void addStudentToCourse(string course_name, string student_username);
 	void removeStudentFromCourse(string course_name, string student_username);
 	void recordGrade(string course_name, string student_username, int grade);
+
+	void print_map_grades();
 };
 
 #endif

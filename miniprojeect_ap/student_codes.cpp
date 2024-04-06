@@ -1,5 +1,6 @@
 #include "student.h"
 #include<iostream>
+#include<iomanip>
 using namespace std;
 
 int Student::number_s = 1;
@@ -49,6 +50,15 @@ void Student::delete_course(string course_name) {
 		return;
 	}
 	Course_Grade.erase(course_name);
+}
+
+void Student::print_map_course_grade() {
+	int ccc = 1;
+	cout << setw(15) << left << "Course" << "Grade" << endl;
+	for (const auto& pair : Course_Grade) {
+		cout << ccc << "." << setw(15) << left << pair.first << pair.second << endl;
+		++ccc;
+	}
 }
 
 

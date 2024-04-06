@@ -27,21 +27,21 @@ int main() {
     int c_teacher = 0;
     int c_student = 0;
     admin.readTeachersFromFile(te, c_teacher);
-  admin.readStudentsFromFile(st, c_student);
+    admin.readStudentsFromFile(st, c_student);
 
       string input;
       while (true) {
          // system("cls");
-          cout << "press 1 to login to admin account\n";
-          cout << "press 2 to login to teacher account\n";
-          cout << "press 3 to login to student account\n";
-          cout << "press 4 to exit\n";
+          cout << "Press 1 to login to admin account\n";
+          cout << "Press 2 to login to teacher account\n";
+          cout << "Press 3 to login to student account\n";
+          cout << "Press 4 to exit\n";
           cin >> input;
 
           if (!isInteger(input)) {
               string m;
               cout << "invalid input ! try again\n";
-              cout << "press any key to back to menu\n";
+              cout << "Press any key to back to menu\n";
               cin >> m;
               continue;
           }
@@ -56,23 +56,23 @@ int main() {
                   string command;
                   while (true) {
                       //system("cls");
-                      cout << "press 1 to add teacher\n";
-                      cout << "press 2 to delete teacher\n";
-                      cout << "press 3 to add student\n";
-                      cout << "press 4 to delete student\n";
-                      cout << "press 5 to exit \n";
+                      cout << "Press 1 to add Teacher\n";
+                      cout << "Press 2 to delete Teacher\n";
+                      cout << "Press 3 to add Student\n";
+                      cout << "Press 4 to delete Student\n";
+                      cout << "Press 5 to restore Student\n";
+                      cout << "Press 6 to restore Teacher\n";
+                      cout << "Press 7 to exit \n";
                       cin >> command;
                       if (!isInteger(command)) {
                           string m;
                           cout << "invalid input ! try again\n";
-                          cout << "press any key to back to menu\n";
+                          cout << "Press any key to back to menu\n";
                           cin >> m;
                           continue;
                       }
-                      if (command == "5") {
-                          break;
-                      }
-                      else if (command == "1") {
+
+                      if (command == "1") {
                           string name_;
                           string username_;
                           string password_;
@@ -118,10 +118,19 @@ int main() {
                           admin.removeStudent(st, c_student, user_remove);
                           admin.saveStudentsToFile(st, c_student);
                       }
+                      else if (command == "5") {
+
+                      }
+                      else if (command == "6") {
+
+                      }
+                      else if (command == "7") {
+                          break;
+                      }
                       else {
                           string m;
                           cout << "invalid input ! try again\n";
-                          cout << "press any key to back to menu\n";
+                          cout << "Press any key to back to menu\n";
                           cin >> m;
                           continue;
                       }
@@ -131,7 +140,7 @@ int main() {
                   puts("\n");
                   string k;
                   cout << "wrong username or password !\n" << endl;
-                  cout << "press any key to back to menu \n";
+                  cout << "Press any key to back to menu \n";
                   cin >> k;
                   continue;
               }
@@ -150,16 +159,18 @@ int main() {
                   string in;
                   while (true)
                   {
-                      cout << "press 1 to create course\n";
-                      cout << "press 2 to add student to course\n";
-                      cout << "press 3 to remove student from course\n";
-                      cout << "press 4 to set grade for student\n";
-                      cout << "press 5 to exit \n";
+                      cout << "Press 1 to create course\n";
+                      cout << "Press 2 to add student to course\n";
+                      cout << "Press 3 to remove student from course\n";
+                      cout << "Press 4 to set grade for student\n";
+                      cout << "Press 5 to see students in course with grade\n";
+                      cout << "Press 6 to change your password\n";
+                      cout << "Press 7 to exit \n";
                       cin >> in;
                       if (!isInteger(in)) {
                           string m;
                           cout << "invalid input ! try again\n";
-                          cout << "press any key to back to menu\n";
+                          cout << "Press any key to back to menu\n";
                           cin >> m;
                           continue;
                       }
@@ -212,7 +223,33 @@ int main() {
                           }
                       }
                       else if (in == "5") {
+                          te[index].print_map_grades();
+                      }
+                      else if (in == "6") {
+                          string __user;
+                          string __pass;
+                          cout << "Enter your username : ";
+                          cin >> __user;
+                          cout << "Enter your password : ";
+                          cin >> __pass;
+                          if (admin.login_student(st, __user, __pass, c_student)) {
+                              cout << "Enter your new password :";
+                              string newpass;
+                              cin >> newpass;
+                              admin.change_pass_teacher(te, __user, newpass, c_teacher);
+                              admin.saveTeachersToFile(te, c_teacher);
+                          }
+
+                      }
+                      else if (in == "7") {
                           break;
+                      }
+                      else {
+                          string m;
+                          cout << "invalid input ! try again\n";
+                          cout << "Press any key to back to menu\n";
+                          cin >> m;
+                          continue;
                       }
 
                   } //End while for teacher menu
@@ -226,11 +263,53 @@ int main() {
               cin >> user_;
               cout << "Enter your password : ";
               cin >> pass_;
+              int index = -1;
               if (admin.login_student(st, user_, pass_, c_student)) {
+                  index = admin.find_index_student(st, user_, c_student);
+                  st[index].print_student(st[index]);
+                  string in;
+                  while (true) {
+                      cout << "Press 1 to see courses and grades\n";
+                      cout << "Press 2 to change your password\n";
+                      cin >> in;
+                      if (!isInteger(in)) {
+                          string m;
+                          cout << "invalid input ! try again\n";
+                          cout << "Press any key to back to menu\n";
+                          cin >> m;
+                          continue;
+                      }
+                      if (in == "1") {
+                          st[index].print_map_course_grade();
+                      }
+                      else if (in == "2") {
+                          string __user;
+                          string __pass;
+                          cout << "Enter your username : ";
+                          cin >> __user;
+                          cout << "Enter your password : ";
+                          cin >> __pass;
+                          if (admin.login_student(st, __user, __pass, c_student)) {
+                              cout << "Enter your new password :";
+                              string newpass;
+                              cin >> newpass;
+                              admin.change_pass_student(st, __user, newpass, c_student);
+                              admin.saveStudentsToFile(st, c_student);
+                          }
 
+                      }
+                      else if (in == "32") {
+                          break;
+                      }
+                      else {
+                          string m;
+                          cout << "invalid input ! try again\n";
+                          cout << "Press any key to back to menu\n";
+                          cin >> m;
+                          continue;
+                      }
 
-
-
+                  }
 
               }
           }
@@ -240,7 +319,7 @@ int main() {
           else {
               string m;
               cout << "invalid input ! try again\n";
-              cout << "press any key to back to menu\n";
+              cout << "Press any key to back to menu\n";
               cin >> m;
               continue;
           }

@@ -33,9 +33,13 @@ public:
 	void change_pass_teacher(Teacher te[], string user, string newpass, int count);
 	void change_pass_student(Student st[], string user, string newpass, int count);
 
-	void restore_student();
-	void moveto_restore(const Teacher te[], string user, int count);
+	void softDeleteTeacher(const string& username);
+	void restoreTeacher(const string& username);
+	void removeRestoredTeacher(const string& username);
 
+	void softDeleteStudent(const string& username);
+	void restoreStudent(const string& username);
+	void removeRestoredStudent(const string& username);
 };
 
 

@@ -1,1 +1,5 @@
-azxs,ss,.0
+e,e,e
+n,n,n
+k,k,k
+d,d,d
+f,f,f

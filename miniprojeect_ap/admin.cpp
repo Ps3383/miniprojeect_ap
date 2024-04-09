@@ -237,27 +237,244 @@ void Admin::change_pass_teacher(Teacher te[], string user, string newpass, int c
     }
 }
 
-void Admin::restore_student() {
+void Admin::softDeleteTeacher(const string& username) {
+    // Open teachers.txt file to read from
+    ifstream inFile("teachers.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file teachers.txt" << endl;
+        return;
+    }
 
+    // Open restore_teachers.txt file to append to
+    ofstream outFile("restore_teachers.txt", ios::app);
+    if (!outFile) {
+        cerr << "Error: Unable to open file restore_teachers.txt" << endl;
+        return;
+    }
 
+    string line;
+    bool found = false;
 
+    // Read each line from teachers.txt
+    while (getline(inFile, line)) {
+        // Check if the line contains the username
+        if (line.find(username) != string::npos) {
+            // Write the line to restore_teachers.txt
+            outFile << line << '\n';
+            found = true;
+        }
+    }
+
+    // Close the files
+    inFile.close();
+    outFile.close();
+
+    if (found) {
+        cout << "Teacher data moved to restore_teachers.txt successfully." << endl;
+    }
+    else {
+        cout << "Error: Teacher not found." << endl;
+    }
 }
 
-void Admin::moveto_restore(const Teacher te[],string user ,int count) {
 
-    ofstream outFile("restore_teachers.txt");
+void Admin::restoreTeacher(const string& username) {
+    // Open restore_teachers.txt file to read from
+    ifstream inFile("restore_teachers.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file restore_teachers.txt" << endl;
+        return;
+    }
+
+    // Open teachers.txt file to append to
+    ofstream outFile("teachers.txt", ios::app);
     if (!outFile) {
         cerr << "Error: Unable to open file teachers.txt" << endl;
         return;
     }
-    int index = -1;
-    for (int i = 0; i < count; ++i) {
-        if (te[i].get_username() == user) {
-            index = i;
+
+    string line;
+    bool found = false;
+
+    // Read each line from restore_teachers.txt
+    while (getline(inFile, line)) {
+        // Check if the line contains the username
+        if (line.find(username) != string::npos) {
+            // Write the line to teachers.txt
+            outFile << line << '\n';
+            found = true;
         }
     }
-        outFile << te[index].get_name() << ',' << te[index].get_username() << ',' << te[index].get_password() << '\n';
-    outFile.close();
-    cout << "Teachers data saved to file successfully." << endl;
 
+    // Close the files
+    inFile.close();
+    outFile.close();
+
+    if (found) {
+        cout << "Teacher with username " << username << " restored successfully." << endl;
+    }
+    else {
+        cout << "Error: Teacher with username " << username << " not found in restore file." << endl;
+    }
+}
+
+void Admin::removeRestoredTeacher(const string& username) {
+    ifstream inFile("restore_teachers.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file restore_teachers.txt" << endl;
+        return;
+    }
+
+    ofstream tempFile("temp.txt");
+    if (!tempFile) {
+        cerr << "Error: Unable to open temporary file temp.txt" << endl;
+        inFile.close();
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    while (getline(inFile, line)) {
+        if (line.find(username) == string::npos) {
+            tempFile << line << '\n';
+        }
+        else {
+            found = true;
+        }
+    }
+
+    inFile.close();
+    tempFile.close();
+
+    remove("restore_teachers.txt");
+    rename("temp.txt", "restore_teachers.txt");
+
+    if (found) {
+        cout << "Information of the restored teacher with username " << username << " removed successfully from restore file." << endl;
+    }
+    else {
+        cout << "Error: Teacher with username " << username << " not found in restore file." << endl;
+    }
+}
+
+void Admin::softDeleteStudent(const string& username) {
+    // Open teachers.txt file to read from
+    ifstream inFile("students.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file students.txt" << endl;
+        return;
+    }
+
+    // Open restore_teachers.txt file to append to
+    ofstream outFile("restore_students.txt", ios::app);
+    if (!outFile) {
+        cerr << "Error: Unable to open file restore_students.txt" << endl;
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    // Read each line from teachers.txt
+    while (getline(inFile, line)) {
+        // Check if the line contains the username
+        if (line.find(username) != string::npos) {
+            // Write the line to restore_teachers.txt
+            outFile << line << '\n';
+            found = true;
+        }
+    }
+
+    // Close the files
+    inFile.close();
+    outFile.close();
+
+    if (found) {
+        cout << "student data moved to restore_students.txt successfully." << endl;
+    }
+    else {
+        cout << "Error: student not found." << endl;
+    }
+}
+
+void Admin::restoreStudent(const string& username) {
+    // Open restore_teachers.txt file to read from
+    ifstream inFile("restore_students.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file restore_students.txt" << endl;
+        return;
+    }
+
+    // Open teachers.txt file to append to
+    ofstream outFile("students.txt", ios::app);
+    if (!outFile) {
+        cerr << "Error: Unable to open file students.txt" << endl;
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    // Read each line from restore_teachers.txt
+    while (getline(inFile, line)) {
+        // Check if the line contains the username
+        if (line.find(username) != string::npos) {
+            // Write the line to teachers.txt
+            outFile << line << '\n';
+            found = true;
+        }
+    }
+
+    // Close the files
+    inFile.close();
+    outFile.close();
+
+    if (found) {
+        cout << "student with username " << username << " restored successfully." << endl;
+    }
+    else {
+        cout << "Error: student with username " << username << " not found in restore file." << endl;
+    }
+
+}
+
+void removeRestoredStudent(const string& username) {
+    ifstream inFile("restore_students.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file restore_students.txt" << endl;
+        return;
+    }
+
+    ofstream tempFile("temp.txt");
+    if (!tempFile) {
+        cerr << "Error: Unable to open temporary file temp.txt" << endl;
+        inFile.close();
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    while (getline(inFile, line)) {
+        if (line.find(username) == string::npos) {
+            tempFile << line << '\n';
+        }
+        else {
+            found = true;
+        }
+    }
+
+    inFile.close();
+    tempFile.close();
+
+    remove("restore_students.txt");
+    rename("temp.txt", "restore_students.txt");
+
+    if (found) {
+        cout << "Information of the restored student with username " << username << " removed successfully from restore file." << endl;
+    }
+    else {
+        cout << "Error: student with username " << username << " not found in restore file." << endl;
+    }
 }

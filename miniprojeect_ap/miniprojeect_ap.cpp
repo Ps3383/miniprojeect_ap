@@ -92,7 +92,7 @@ int main() {
                           string user_remove;
                           cout << "Enter teacher_username that you want to delete : ";
                           cin >> user_remove;
-                          admin.moveto_restore(te, user_remove, c_teacher);
+                          admin.softDeleteTeacher(user_remove);
                           admin.removeTeacher(te, c_teacher, user_remove);
                           admin.saveTeachersToFile(te, c_teacher);
                       }
@@ -116,15 +116,23 @@ int main() {
                           string user_remove;
                           cout << "Enter student_username that you want to delete : ";
                           cin >> user_remove;
-                          admin.moveto_restore(te, user_remove, c_teacher);
+                          admin.softDeleteStudent(user_remove);
                           admin.removeStudent(st, c_student, user_remove);
                           admin.saveStudentsToFile(st, c_student);
                       }
                       else if (command == "5") {
-
+                          string res_user;
+                          cout << "Enter Student_username for restore : ";
+                          cin >> res_user;
+                          admin.restoreStudent(res_user);
+                          admin.removeRestoredStudent(res_user);
                       }
                       else if (command == "6") {
-
+                          string res_user;
+                          cout << "Enter Teacher_username for restore : ";
+                          cin >> res_user;
+                          admin.restoreTeacher(res_user);
+                          admin.removeRestoredTeacher(res_user);
                       }
                       else if (command == "7") {
                           break;

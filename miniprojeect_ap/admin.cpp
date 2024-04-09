@@ -1,6 +1,6 @@
 #include"admin.h"
 #include <fstream>
-//#include<iostream>
+#include<iostream>
 #include <string>
 using namespace std;
 
@@ -12,7 +12,7 @@ Admin::~Admin() {
 	// nothing now
 }
 
-void Admin::saveTeachersToFile(const Teacher te[], int count) {
+void Admin::saveTeachersToFile(const Teacher te[], int count, map<string, vector<string>> courses, map<string, map<string, int>> grades) {
     ofstream outFile("teachers.txt");
     if (!outFile) {
         cerr << "Error: Unable to open file teachers.txt" << endl;
@@ -22,6 +22,16 @@ void Admin::saveTeachersToFile(const Teacher te[], int count) {
     for (int i = 0; i < count; ++i) {
         outFile << te[i].get_name() << ',' << te[i].get_username() << ',' << te[i].get_password() << '\n';
     }
+    ////////////
+    for (const auto& courseEntry : courses) {
+        string courseName = courseEntry.first;
+        const vector<string>& students = courseEntry.second;
+        for (const auto& student : students) {
+            int grade = grades[courseName][student];
+            outFile << courseName << "," << student << "," << grade << "\n";
+        }
+    }
+    //////////////
 
     outFile.close();
     cout << "Teachers data saved to file successfully." << endl;
@@ -48,6 +58,23 @@ void Admin::readTeachersFromFile(Teacher te[], int& count) {
         te[count].set_password(password);
         count++;
     }
+    ////////////
+        // Read courses, students, and grades
+    while (getline(inFile, line)) {
+        if (line.empty()) // Check for empty line, indicating end of teacher's data
+            break;
+
+        size_t pos = line.find(',');
+        string courseName = line.substr(0, pos);
+        string studentUsername = line.substr(pos + 1);
+        te[count].addStudentToCourse(courseName, studentUsername); // Assume you have a function to add student to course
+        // Read grade and add it to the teacher's data
+        // Assuming the grade is the next entry in the file
+        getline(inFile, line);
+        int grade = stoi(line);
+        te[count].recordGrade(courseName, studentUsername, grade); // Assume you have a function to record grades
+    }
+    ////////////
 
     inFile.close();
     cout << "Teachers data read from file successfully." << endl;
@@ -439,7 +466,7 @@ void Admin::restoreStudent(const string& username) {
 
 }
 
-void removeRestoredStudent(const string& username) {
+void Admin::removeRestoredStudent(const string& username) {
     ifstream inFile("restore_students.txt");
     if (!inFile) {
         cerr << "Error: Unable to open file restore_students.txt" << endl;
@@ -478,3 +505,6 @@ void removeRestoredStudent(const string& username) {
         cout << "Error: student with username " << username << " not found in restore file." << endl;
     }
 }
+
+
+

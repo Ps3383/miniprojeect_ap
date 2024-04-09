@@ -1,5 +1,4 @@
+q,q,q
 e,e,e
-n,n,n
-k,k,k
-d,d,d
-f,f,f
+r,r,r
+y,y,y

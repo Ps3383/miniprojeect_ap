@@ -13,7 +13,7 @@ public:
 	Admin();
 	~Admin();
 
-	void saveTeachersToFile(const Teacher te[], int count);
+	void saveTeachersToFile(const Teacher te[], int count , map<string, vector<string>> courses, map<string, map<string, int>> grades);
 	void readTeachersFromFile(Teacher te[], int& count);
 	void removeTeacher(Teacher te[], int& count, const string& usernameToRemove);
 
@@ -40,6 +40,9 @@ public:
 	void softDeleteStudent(const string& username);
 	void restoreStudent(const string& username);
 	void removeRestoredStudent(const string& username);
+
+	
+
 };
 
 

@@ -39,6 +39,7 @@ public:
 	void delete_course(string course_name);
 
 	void print_map_course_grade();
+
 };
 
 #endif

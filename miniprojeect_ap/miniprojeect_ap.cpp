@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include<map>
+#include<vector>
 #include"teacher.h"
 #include"student.h"
 #include"admin.h"
@@ -27,8 +29,9 @@ int main() {
     int c_teacher = 0;
     int c_student = 0;
     admin.readTeachersFromFile(te, c_teacher);
-    admin.readStudentsFromFile(st, c_student);
-
+    admin.readStudentsFromFile(st, c_student);///////nakamelllll
+    map<string, vector<string>> courses;
+    map<string, map<string, int>> grades;
       string input;
       while (true) {
          // system("cls");
@@ -62,6 +65,7 @@ int main() {
                       cout << "Press 4 to delete Student\n";
                       cout << "Press 5 to restore Student\n";
                       cout << "Press 6 to restore Teacher\n";
+                      
                       cout << "Press 7 to exit \n";
                       cin >> command;
                       if (!isInteger(command)) {
@@ -86,7 +90,7 @@ int main() {
                           te[c_teacher].set_username(username_);
                           te[c_teacher].set_password(password_); 
                           ++c_teacher;
-                          admin.saveTeachersToFile(te, c_teacher);
+                          admin.saveTeachersToFile(te, c_teacher, courses,grades );
                       }
                       else if (command == "2") {
                           string user_remove;
@@ -94,7 +98,7 @@ int main() {
                           cin >> user_remove;
                           admin.softDeleteTeacher(user_remove);
                           admin.removeTeacher(te, c_teacher, user_remove);
-                          admin.saveTeachersToFile(te, c_teacher);
+                          admin.saveTeachersToFile(te, c_teacher, courses, grades);
                       }
                       else if (command == "3") {
                           string name_;
@@ -189,6 +193,7 @@ int main() {
                           cout << "Enter course name that you want to add : ";
                           cin >> coursename;
                           te[index].create_course(coursename);
+                          admin.saveTeachersToFile(te, c_teacher, courses, grades);
                       }
                       else if (in == "2") {
                           string coursename;
@@ -201,6 +206,7 @@ int main() {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
                               te[index].addStudentToCourse(coursename, user_stu);
                               st[index_st].set_course_grade(coursename , -1);
+                              admin.saveTeachersToFile(te, c_teacher, courses, grades);
                           }
                       }
                       else if (in == "3") {
@@ -214,6 +220,7 @@ int main() {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
                               te[index].removeStudentFromCourse(coursename, user_stu);
                               st[index_st].delete_course(coursename);
+                              admin.saveTeachersToFile(te, c_teacher, courses, grades);
                           }
                       }
                       else if (in == "4") {
@@ -230,6 +237,7 @@ int main() {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
                               st[index_st].set_course_grade(coursename, grade);
                               te[index].recordGrade(coursename, user_stu, grade);
+                              admin.saveTeachersToFile(te, c_teacher, courses, grades);
                           }
                       }
                       else if (in == "5") {
@@ -247,9 +255,8 @@ int main() {
                               string newpass;
                               cin >> newpass;
                               admin.change_pass_teacher(te, __user, newpass, c_teacher);
-                              admin.saveTeachersToFile(te, c_teacher);
+                              admin.saveTeachersToFile(te, c_teacher,courses,grades);
                           }
-
                       }
                       else if (in == "7") {
                           break;

@@ -1,6 +1,9 @@
 #include"teacher.h"
 #include <iostream>
 #include<iomanip>
+#include<fstream>
+#include<sstream>
+#include<string>
 using namespace std;
 
 int Teacher::number_t = 0;
@@ -38,7 +41,7 @@ void Teacher::print_teacher(Teacher te) {
 	cout << te.get_password() << endl;
 	cout << te.get_teacher_id() << endl;
 }
-// riskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
 
 void Teacher:: create_course(string course_name) {
 	courses[course_name] = vector<string>();
@@ -67,7 +70,7 @@ void Teacher::removeStudentFromCourse(string course_name, string student_usernam
 
 void Teacher::recordGrade(string course_name, string student_username, int grade) {
 	grades[course_name][student_username] = grade;
-	cout << "successfully Donr (:\n";
+	cout << "successfully Done (:\n";
 }
 
 void Teacher::print_map_grades() {
@@ -80,6 +83,5 @@ void Teacher::print_map_grades() {
 		}
 	}
 }
-
 
 

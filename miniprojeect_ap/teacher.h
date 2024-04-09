@@ -36,7 +36,6 @@ public:
 
 	void print_teacher(Teacher te);
 
-	//risssssskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 	void create_course(string course_name);
 	void addStudentToCourse(string course_name, string student_username);
 	void removeStudentFromCourse(string course_name, string student_username);

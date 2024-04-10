@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="admin.cpp" />
     <ClCompile Include="admin.h" />
+    <ClCompile Include="Assignment.cpp" />
     <ClCompile Include="miniprojeect_ap.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\miniprojeect_ap\miniprojeect_ap\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\miniprojeect_ap\miniprojeect_ap\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -139,6 +140,7 @@
     <ClCompile Include="teacher_codes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assignment.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="teacher.h" />
   </ItemGroup>

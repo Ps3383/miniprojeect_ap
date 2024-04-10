@@ -73,13 +73,6 @@ void Teacher::recordGrade(string course_name, string student_username, int grade
 	cout << "successfully Done (:\n";
 }
 
-
-
-
-
-
-
-
 void Teacher::print_map_grades() {
 	int cc = 1;
 	cout << setw(20) << left << "Course Name" << setw(20) << left << "Student_username" << "Grade" << endl;
@@ -88,6 +81,47 @@ void Teacher::print_map_grades() {
 			cout << cc << "." << setw(20) << left << course.first << setw(20) << left << student.first << course.second << endl;
 			++cc;
 		}
+	}
+}
+
+void Teacher::addAssignmentToCourse(string course_name, string title, string text, string studentName) {
+	if (courseAssignments.find(course_name) == courseAssignments.end()) {
+		// Course not found, create a new entry
+		courseAssignments[course_name] = vector<Assignment>();
+	}
+	// Add assignment to the corresponding course
+	courseAssignments[course_name].push_back(Assignment(title, text, studentName));
+}
+
+// Implementation of the method to print assignments of a specific course
+void Teacher::printAssignmentsOfCourse(string course_name) {
+	if (courseAssignments.find(course_name) != courseAssignments.end()) {
+		cout << "Assignments for course " << course_name << ":" << endl;
+		for (const auto& assignment : courseAssignments[course_name]) {
+			cout << "Title: " << assignment.getTitle() << endl;
+			cout << "Text: " << assignment.getText() << endl;
+			// Print more assignment details if needed
+			cout << "--------------------" << endl;
+		}
+	}
+	else {
+		cout << "No assignments found for course " << course_name << endl;
+	}
+}
+
+void Teacher::gradeAssignmentOfCourse(string course_name, string assignmentTitle, string studentName, int grade) {
+	if (courseAssignments.find(course_name) != courseAssignments.end()) {
+		for (auto& assignment : courseAssignments[course_name]) {
+			if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == studentName) {
+				assignment.setGrade(grade);
+				cout << "Grade for assignment '" << assignment.getTitle() << "' by student '" << studentName << "' in course '" << course_name << "' has been set to " << grade << endl;
+				return;
+			}
+		}
+		cout << "Assignment not found or student not enrolled in this course." << endl;
+	}
+	else {
+		cout << "No assignments found for course " << course_name << endl;
 	}
 }
 

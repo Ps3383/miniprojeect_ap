@@ -1,4 +1,4 @@
-#include "student.h"
+﻿#include "student.h"
 #include<iostream>
 #include<iomanip>
 #include<string>
@@ -55,8 +55,6 @@ void Student::delete_course(string course_name) {
 	Course_Grade.erase(course_name);
 }
 
-
-
 void Student::print_map_course_grade() {
 	int ccc = 1;
 	cout << setw(15) << left << "Course" << "Grade" << endl;
@@ -65,5 +63,55 @@ void Student::print_map_course_grade() {
 		++ccc;
 	}
 }
+
+void Student::addAssignmentToCourse(string course_name, string title, string text) {
+    if (courseAssignments.find(course_name) == courseAssignments.end()) {
+        // Course not found, create a new entry
+        courseAssignments[course_name] = vector<Assignment>();
+    }
+    // Add assignment to the corresponding course
+    courseAssignments[course_name].push_back(Assignment(title, text, Name));
+}
+
+// Implementation of the method to print assignments of a specific course for Student
+void Student::printAssignmentsOfCourse(string course_name) {
+    if (courseAssignments.find(course_name) != courseAssignments.end()) {
+        cout << "Your Assignments for course " << course_name << ":" << endl;
+        for (const auto& assignment : courseAssignments[course_name]) {
+            cout << "Title: " << assignment.getTitle() << endl;
+            cout << "Text: " << assignment.getText() << endl;
+            // Print more assignment details if needed
+            if (assignment.getGrade() != -1) {
+                cout << "Grade: " << assignment.getGrade() << endl;
+            }
+            else {
+                cout << "Grade: Not graded yet" << endl;
+            }
+            cout << "--------------------" << endl;
+        }
+    }
+    else {
+        cout << "No assignments found for course " << course_name << endl;
+    }
+}
+
+// Implementation of the method to grade an assignment for a specific course for Student
+void Student::gradeAssignmentOfCourse(string course_name, string assignmentTitle, int grade) {
+    if (courseAssignments.find(course_name) != courseAssignments.end()) {
+        for (auto& assignment : courseAssignments[course_name]) {
+            if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == Name) {
+                assignment.setGrade(grade);
+                cout << "Grade for assignment '" << assignment.getTitle() << "' in course '" << course_name << "' has been set to " << grade << endl;
+                return;
+            }
+        }
+        cout << "Assignment not found or you are not enrolled in this course." << endl;
+    }
+    else {
+        cout << "No assignments found for course " << course_name << endl;
+    }
+}
+
+
 
 

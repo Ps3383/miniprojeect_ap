@@ -177,7 +177,7 @@ int main() {
                       cout << "Press 3 to remove student from course\n";
                       cout << "Press 4 to set grade for student\n";
                       cout << "Press 5 to see students in course with grade\n";
-                      cout << "Press 6 to set homework\n";
+                      cout << "Press 6 to set homework for student\n";
                       cout << "Press 7 to change your password\n";
                       cout << "Press 8 to exit \n";
                       cin >> in;
@@ -244,7 +244,7 @@ int main() {
                           te[index].print_map_grades();
                       }
                       else if (in == "6") {
-
+                          
 
                       }
                       else if (in == "7") {

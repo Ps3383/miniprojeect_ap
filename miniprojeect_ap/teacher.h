@@ -4,6 +4,7 @@
 #include<iostream>
 #include<vector>
 #include<map>
+#include"Assignment.h"
 using namespace std;
 class Teacher {
 private:
@@ -14,7 +15,7 @@ private:
 
 	map<string, vector<string>> courses; // Map to store students for each course
 	map<string, map<string, int>> grades; // Map to store grades for each student in each course
-	
+	map<string, vector<Assignment>> courseAssignments;
 
 	static int count_teacher_obj;
 	static int number_t;
@@ -42,7 +43,12 @@ public:
 	void removeStudentFromCourse(string course_name, string student_username);
 	void recordGrade(string course_name, string student_username, int grade);
 
-	void setHomework(string course_name, string homework,string stu_username);
+
+	void addAssignmentToCourse(string course_name, string title, string text, string studentName);
+	// Print assignments for a specific course
+	void printAssignmentsOfCourse(string course_name);
+
+	void gradeAssignmentOfCourse(string course_name, string assignmentTitle, string studentName, int grade);
 	
 
 	void print_map_grades();

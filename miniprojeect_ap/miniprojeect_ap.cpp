@@ -244,7 +244,7 @@ int main() {
                           te[index].print_map_grades();
                       }
                       else if (in == "6") {
-                          
+                          cout << "enter";
 
                       }
                       else if (in == "7") {

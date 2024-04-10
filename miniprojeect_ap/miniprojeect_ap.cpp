@@ -65,7 +65,6 @@ int main() {
                       cout << "Press 4 to delete Student\n";
                       cout << "Press 5 to restore Student\n";
                       cout << "Press 6 to restore Teacher\n";
-                      
                       cout << "Press 7 to exit \n";
                       cin >> command;
                       if (!isInteger(command)) {
@@ -178,8 +177,9 @@ int main() {
                       cout << "Press 3 to remove student from course\n";
                       cout << "Press 4 to set grade for student\n";
                       cout << "Press 5 to see students in course with grade\n";
-                      cout << "Press 6 to change your password\n";
-                      cout << "Press 7 to exit \n";
+                      cout << "Press 6 to set homework\n";
+                      cout << "Press 7 to change your password\n";
+                      cout << "Press 8 to exit \n";
                       cin >> in;
                       if (!isInteger(in)) {
                           string m;
@@ -244,6 +244,10 @@ int main() {
                           te[index].print_map_grades();
                       }
                       else if (in == "6") {
+
+
+                      }
+                      else if (in == "7") {
                           string __user;
                           string __pass;
                           cout << "Enter your username : ";
@@ -258,7 +262,7 @@ int main() {
                               admin.saveTeachersToFile(te, c_teacher,courses,grades);
                           }
                       }
-                      else if (in == "7") {
+                      else if (in == "8") {
                           break;
                       }
                       else {

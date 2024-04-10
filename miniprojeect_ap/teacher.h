@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef TEACHER_H
 #define TEACHER_H
 #include<iostream>
@@ -15,6 +15,7 @@ private:
 	map<string, vector<string>> courses; // Map to store students for each course
 	map<string, map<string, int>> grades; // Map to store grades for each student in each course
 	
+
 	static int count_teacher_obj;
 	static int number_t;
 public:
@@ -40,6 +41,9 @@ public:
 	void addStudentToCourse(string course_name, string student_username);
 	void removeStudentFromCourse(string course_name, string student_username);
 	void recordGrade(string course_name, string student_username, int grade);
+
+	void setHomework(string course_name, string homework,string stu_username);
+	
 
 	void print_map_grades();
 };

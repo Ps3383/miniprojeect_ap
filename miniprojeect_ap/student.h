@@ -10,9 +10,10 @@ private:
 	string Name;
 	string Username;
 	string Password;
-	int Student_ID;
+	int    Student_ID;
 
 	map <string, int > Course_Grade;
+
 
 	static int count_student_obj;
 	static int number_s;
@@ -37,6 +38,10 @@ public:
 
 	void set_course_grade(string course_name, int grade);
 	void delete_course(string course_name);
+
+	
+
+
 
 	void print_map_course_grade();
 

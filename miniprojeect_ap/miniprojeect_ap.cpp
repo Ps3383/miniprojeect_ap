@@ -178,8 +178,10 @@ int main() {
                       cout << "Press 4 to set grade for student\n";
                       cout << "Press 5 to see students in course with grade\n";
                       cout << "Press 6 to set homework for student\n";
-                      cout << "Press 7 to change your password\n";
-                      cout << "Press 8 to exit \n";
+                      cout << "Press 7 to see assignment of courses that you set\n";
+                      cout << "Press 8 to view homework of student\n";
+                      cout << "Press 9 to change your password\n";
+                      cout << "Press 10 to sign out \n";
                       cin >> in;
                       if (!isInteger(in)) {
                           string m;
@@ -244,10 +246,64 @@ int main() {
                           te[index].print_map_grades();
                       }
                       else if (in == "6") {
-                          cout << "enter";
+                          string coursename, title, text,user_stu;
+                          cout << "Enter course name for set homework : ";
+                          cin >> coursename;
+                          cout << "Enter title of homewowrk : ";
+                          cin >> title;
+                          cout << "Enter description for homework : ";
+                          cin >> text;
+                          cout << "Enter username for add homework for this student : ";
+                          cin >> user_stu;
+                          if (admin.find_index_student(st, user_stu, c_student) != -1) {
+                              te[index].addAssignmentToCourse(coursename, title, text, user_stu);
+                              int st_index = admin.find_index_student(st, user_stu, c_student);
+                              st[st_index].addAssignmentToCourse(coursename, title, text);
+
+                          }
 
                       }
                       else if (in == "7") {
+                          cout << "Enter course name : ";
+                          string co;
+                          cin >> co;
+                          te[index].printAssignmentsOfCourse(co);
+                      }
+                      else if (in == "8") {
+                          cout << "Enter course name : ";
+                          string co;
+                          cin >> co;
+                          te[index].viewAssignmentsOfCourse(co);
+                          cout << "Press 1 to set grade for assignment\n";
+                          cout << "Press 2 to back to menu\n";
+                          string j;
+                          cin >> j;
+                          if (j == "1") {
+                              string title, s_user, course;
+                              int gra = 0;
+                              cout << "Enter course name : ";
+                              cin >> course;
+                              cout << "Enter title of homework : ";
+                              cin >> title;
+                              cout << "Enter student_username : ";
+                              cin >> s_user;
+                              cout << "Enter grade : ";
+                              cin >> gra;
+                              int i_st = admin.find_index_student(st, s_user, c_student);
+                              st[i_st].gradeAssignmentOfCourse(course, title, gra);
+                              te[index].gradeAssignmentOfCourse(course, title, s_user, gra);
+                          }
+                          else if (j == "2") {
+
+                          }
+                          else {
+                              cout << "Wrong input\n";
+                              cout << "Press any key to back to menu\n";
+                              string h;
+                              cin >> h;
+                          }
+                      }
+                      else if (in == "9") {
                           string __user;
                           string __pass;
                           cout << "Enter your username : ";
@@ -262,7 +318,7 @@ int main() {
                               admin.saveTeachersToFile(te, c_teacher,courses,grades);
                           }
                       }
-                      else if (in == "8") {
+                      else if (in == "10") {
                           break;
                       }
                       else {
@@ -292,6 +348,8 @@ int main() {
                   while (true) {
                       cout << "Press 1 to see courses and grades\n";
                       cout << "Press 2 to change your password\n";
+                      cout << "Press 3 to see your homework\n";
+                      cout << "Press 4 to sign out\n";
                       cin >> in;
                       if (!isInteger(in)) {
                           string m;
@@ -319,7 +377,41 @@ int main() {
                           }
 
                       }
-                      else if (in == "32") {
+                      else if (in == "3") {
+                         string course;
+                         cout<<"Enetr name of the course to see homework : ";
+                         cin >> course;
+                         st[index].printAssignmentsOfCourse(course);
+                         puts("\n");
+                         cout << "Press 1 to do your homework\n";
+                         cout << "Press 2 to back to menu\n";
+                         string yes;
+                         cin >> yes;
+                         if (yes == "1") {
+                             string title,text,tename,course;
+                             cout << "Enter course name : ";
+                             cin >> course;
+                             cout << "Enter title of homework : ";
+                             cin >> title;
+                             cout << "Enter a text for your homework : ";
+                             cin >> text;
+                             cout << "Enter name of the Teacher : ";
+                             cin >> tename;
+                             int x = admin.find_index_teacher_name(te, tename, c_teacher);
+                             if(x!=-1)
+                             st[index].submitAssignmentToTeacher(title, text, te[x], course);
+                         }
+                         else if (yes == "2") {
+
+                         }
+                         else {
+                             cout << "Wrong input\n";
+                             cout << "Press any key to back to menu\n";
+                             string h;
+                             cin >> h;
+                         }
+                      }
+                      else if (in == "4") {
                           break;
                       }
                       else {

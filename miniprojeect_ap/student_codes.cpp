@@ -1,4 +1,5 @@
 ﻿#include "student.h"
+#include"teacher.h"
 #include<iostream>
 #include<iomanip>
 #include<string>
@@ -112,6 +113,14 @@ void Student::gradeAssignmentOfCourse(string course_name, string assignmentTitle
     }
 }
 
+void Student::submitAssignmentToTeacher(string assignmentTitle, string assignmentText, Teacher& teacher, string course_name) {
+    // Create an assignment object
+    Assignment assignment(assignmentTitle, assignmentText, Name);
 
+    // Add the assignment to the teacher's course
+    teacher.addAssignmentToCourse(course_name, assignmentTitle, assignmentText, Name);
+
+    cout << "Assignment '" << assignmentTitle << "' has been submitted to the teacher for course '" << course_name << "'" << endl;
+}
 
 

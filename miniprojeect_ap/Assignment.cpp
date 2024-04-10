@@ -4,8 +4,6 @@
 #include<sstream>
 using namespace std;
 
-Assignment::Assignment(string _title , string _text , string _studentName , int _grade)
-    : title(_title), text(_text), studentName(_studentName), grade(_grade) {}
 
 string Assignment:: getTitle() const { return title; }
 void Assignment::setTitle(string _title) { title = _title; }

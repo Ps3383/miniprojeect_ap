@@ -84,13 +84,14 @@ void Teacher::print_map_grades() {
 	}
 }
 
-void Teacher::addAssignmentToCourse(string course_name, string title, string text, string studentName) {
+void Teacher::addAssignmentToCourse(string course_name, string title, string text, string student_username) {
 	if (courseAssignments.find(course_name) == courseAssignments.end()) {
 		// Course not found, create a new entry
 		courseAssignments[course_name] = vector<Assignment>();
 	}
 	// Add assignment to the corresponding course
-	courseAssignments[course_name].push_back(Assignment(title, text, studentName));
+	
+	courseAssignments[course_name].push_back(Assignment(title, text, student_username));
 }
 
 // Implementation of the method to print assignments of a specific course
@@ -109,12 +110,12 @@ void Teacher::printAssignmentsOfCourse(string course_name) {
 	}
 }
 
-void Teacher::gradeAssignmentOfCourse(string course_name, string assignmentTitle, string studentName, int grade) {
+void Teacher::gradeAssignmentOfCourse(string course_name, string assignmentTitle, string student_username, int grade) {
 	if (courseAssignments.find(course_name) != courseAssignments.end()) {
 		for (auto& assignment : courseAssignments[course_name]) {
-			if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == studentName) {
+			if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == student_username) {
 				assignment.setGrade(grade);
-				cout << "Grade for assignment '" << assignment.getTitle() << "' by student '" << studentName << "' in course '" << course_name << "' has been set to " << grade << endl;
+				cout << "Grade for assignment '" << assignment.getTitle() << "' by student '" << student_username << "' in course '" << course_name << "' has been set to " << grade << endl;
 				return;
 			}
 		}
@@ -125,4 +126,24 @@ void Teacher::gradeAssignmentOfCourse(string course_name, string assignmentTitle
 	}
 }
 
-
+void Teacher::viewAssignmentsOfCourse(string course_name) {
+	cout << "Assignments submitted by students for course " << course_name << ":" << endl;
+	// Check if the course has assignments
+	if (courseAssignments.find(course_name) != courseAssignments.end()) {
+		for (const auto& assignment : courseAssignments[course_name]) {
+			cout << "Student: " << assignment.getStudentName() << endl;
+			cout << "Title: " << assignment.getTitle() << endl;
+			cout << "Text: " << assignment.getText() << endl;
+			if (assignment.getGrade() != -1) {
+				cout << "Grade: " << assignment.getGrade() << endl;
+			}
+			else {
+				cout << "Grade: Not graded yet" << endl;
+			}
+			cout << "--------------------" << endl;
+		}
+	}
+	else {
+		cout << "No assignments found for course " << course_name << endl;
+	}
+}

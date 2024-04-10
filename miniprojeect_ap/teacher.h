@@ -44,12 +44,13 @@ public:
 	void recordGrade(string course_name, string student_username, int grade);
 
 
-	void addAssignmentToCourse(string course_name, string title, string text, string studentName);
+	void addAssignmentToCourse(string course_name, string title, string text, string student_username);
 	// Print assignments for a specific course
 	void printAssignmentsOfCourse(string course_name);
 
-	void gradeAssignmentOfCourse(string course_name, string assignmentTitle, string studentName, int grade);
+	void gradeAssignmentOfCourse(string course_name, string assignmentTitle, string student_username, int grade);
 	
+	void viewAssignmentsOfCourse(string course_name);
 
 	void print_map_grades();
 };

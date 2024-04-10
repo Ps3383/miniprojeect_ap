@@ -5,6 +5,7 @@
 #include<vector>
 #include<map>
 #include"Assignment.h"
+#include"teacher.h"
 using namespace std;
 class Student {
 private:
@@ -47,7 +48,7 @@ public:
 	// Grade an assignment for a specific course
 	void gradeAssignmentOfCourse(string course_name, string assignmentTitle, int grade);
 
-
+	void submitAssignmentToTeacher(string assignmentTitle, string assignmentText, Teacher& teacher, string course_name);
 
 	void print_map_course_grade();
 

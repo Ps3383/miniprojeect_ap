@@ -2,6 +2,7 @@
 #include <iostream>
 #include<iomanip>
 #include<fstream>
+#include<algorithm>
 #include<sstream>
 #include<string>
 using namespace std;
@@ -52,13 +53,22 @@ void Teacher::addStudentToCourse(string course_name, string student_username) {
 }
 
 void Teacher::removeStudentFromCourse(string course_name, string student_username) {
+	// Check if the course exists
 	if (courses.find(course_name) == courses.end()) {
 		cout << "Course <<" << course_name << ">> does not exist for this Teacher!" << endl;
 		return;
 	}
+
+	// Get the reference to the vector of students in the course
 	auto& students = courses[course_name];
-	students.erase(remove(students.begin(), students.end(), student_username), students.end());
-	cout << "successfully Removed (:\n";
+
+	// Use std::remove_if with a lambda function to remove the student by username
+	students.erase(std::remove_if(students.begin(), students.end(),
+		[student_username](const string& username) {
+			return username == student_username;
+		}), students.end());
+
+	cout << "Successfully Removed :)" << endl;
 }
 
 void Teacher::recordGrade(string course_name, string student_username, int grade) {
@@ -67,12 +77,10 @@ void Teacher::recordGrade(string course_name, string student_username, int grade
 }
 
 void Teacher::print_map_grades() {
-	
-	cout << setw(20) << left << "Student_username" << setw(20) << left << "Course name" << "Grade" << endl;
+	cout << setw(20)  << "Student_username" << setw(20) << "Course name" << setw(20) << "Grade" << endl;
 	for (const auto& student : grades) {
 		for (const auto& course : student.second) {
-			cout <<"." << setw(20) << left << course.first << setw(20) << left << student.first << course.second << endl;
-			
+			cout <<setw(20)  << course.first << setw(20) << student.first << setw(20) << course.second << endl;
 		}
 	}
 }

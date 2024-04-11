@@ -298,7 +298,6 @@ int main() {
                       }
                       else if (in == "5") {
                           te[index].print_map_grades();
-                          puts("\n");
                           cout << "Press any key to back to menu : ";
                           string v;
                           cin >> v;

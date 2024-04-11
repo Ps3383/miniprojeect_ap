@@ -67,7 +67,7 @@ int main() {
               cin >> u_name;
               cout << "Enter password : ";
               cin >> pass;
-              if (u_name == "a" && pass == "a") {
+              if (u_name == "admin" && pass == "admin") {
                   string command;
                   while (true) {
                       system("cls");

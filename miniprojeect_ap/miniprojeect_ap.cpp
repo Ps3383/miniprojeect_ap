@@ -80,11 +80,14 @@ int main() {
                           string username_;
                           string password_;
                           cout << "Enter teacher name : ";
-                          cin >> name_;
+                          cin.ignore(); // Ignore the newline character left in the buffer by cin >>
+                          getline(cin, name_);
                           cout << "Enter teacher username : ";
-                          cin >> username_;
+                          cin.ignore();
+                          getline(cin, username_);
                           cout << "Enter teacher password : ";
-                          cin >> password_;
+                          cin.ignore();
+                          getline(cin, password_);
                           te[c_teacher].set_name(name_);
                           te[c_teacher].set_username(username_);
                           te[c_teacher].set_password(password_); 
@@ -104,11 +107,14 @@ int main() {
                           string username_;
                           string password_;
                           cout << "Enter student name : ";
-                          cin >> name_;
+                          cin.ignore();
+                          getline(cin, name_);
                           cout << "Enter student username : ";
-                          cin >> username_;
+                          cin.ignore();
+                          getline(cin, username_);
                           cout << "Enter student password : ";
-                          cin >> password_;
+                          cin.ignore();
+                          getline(cin, password_);
                           st[c_student].set_name(name_);
                           st[c_student].set_username(username_);
                           st[c_student].set_password(password_);
@@ -118,7 +124,8 @@ int main() {
                       else if (command == "4") {
                           string user_remove;
                           cout << "Enter student_username that you want to delete : ";
-                          cin >> user_remove;
+                          cin.ignore();
+                          getline(cin, user_remove);
                           admin.softDeleteStudent(user_remove);
                           admin.removeStudent(st, c_student, user_remove);
                           admin.saveStudentsToFile(st, c_student);
@@ -126,14 +133,16 @@ int main() {
                       else if (command == "5") {
                           string res_user;
                           cout << "Enter Student_username for restore : ";
-                          cin >> res_user;
+                          cin.ignore();
+                          getline(cin, res_user);
                           admin.restoreStudent(res_user);
                           admin.removeRestoredStudent(res_user);
                       }
                       else if (command == "6") {
                           string res_user;
                           cout << "Enter Teacher_username for restore : ";
-                          cin >> res_user;
+                          cin.ignore();
+                          getline(cin, res_user);
                           admin.restoreTeacher(res_user);
                           admin.removeRestoredTeacher(res_user);
                       }
@@ -162,9 +171,11 @@ int main() {
               string user_;
               string pass_;
               cout << "Enter your username : ";
-              cin >> user_;
+              cin.ignore();
+              getline(cin, user_);
               cout << "Enter your password : ";
-              cin >> pass_;
+              cin.ignore();
+              getline(cin, pass_);
               int index = -1;
               if (admin.login_teacher(te, user_, pass_, c_teacher)) {
                   index = admin.find_index_teacher(te, user_, c_teacher); //have te_index
@@ -193,7 +204,8 @@ int main() {
                       if (in == "1") {
                           string coursename;
                           cout << "Enter course name that you want to add : ";
-                          cin >> coursename;
+                          cin.ignore();
+                          getline(cin, coursename);
                           te[index].create_course(coursename);
                           admin.saveTeachersToFile(te, c_teacher, courses, grades);
                       }
@@ -201,9 +213,11 @@ int main() {
                           string coursename;
                           string user_stu;
                           cout << "Enter course name to add student in : ";
-                          cin >> coursename;
+                          cin.ignore();
+                          getline(cin, coursename);
                           cout << "Enter student_username to add : ";
-                          cin >> user_stu;
+                          cin.ignore();
+                          getline(cin, user_stu);
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
                               te[index].addStudentToCourse(coursename, user_stu);
@@ -215,9 +229,11 @@ int main() {
                           string coursename;
                           string user_stu;
                           cout << "Enter course name to delete student from : ";
-                          cin >> coursename;
+                          cin.ignore();
+                          getline(cin, coursename);
                           cout << "Enter student_username to delete from course : ";
-                          cin >> user_stu;
+                          cin.ignore();
+                          getline(cin, user_stu);
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
                               int index_st = admin.find_index_student(st, user_stu, c_student);
                               te[index].removeStudentFromCourse(coursename, user_stu);
@@ -230,9 +246,11 @@ int main() {
                           string user_stu;
                           int grade = 0;
                           cout << "Enter course name for grade : ";
-                          cin >> coursename;
+                          cin.ignore();
+                          getline(cin, coursename);
                           cout << "Enter student_username to give grade : ";
-                          cin >> user_stu;
+                          cin.ignore();
+                          getline(cin, user_stu);
                           cout << "Enter grade : ";
                           cin >> grade;
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
@@ -248,13 +266,17 @@ int main() {
                       else if (in == "6") {
                           string coursename, title, text,user_stu;
                           cout << "Enter course name for set homework : ";
-                          cin >> coursename;
+                          cin.ignore();
+                          getline(cin, coursename);
                           cout << "Enter title of homewowrk : ";
-                          cin >> title;
+                          cin.ignore();
+                          getline(cin, title);
                           cout << "Enter description for homework : ";
-                          cin >> text;
+                          cin.ignore();
+                          getline(cin, text);
                           cout << "Enter username for add homework for this student : ";
-                          cin >> user_stu;
+                          cin.ignore();
+                          getline(cin, user_stu);
                           if (admin.find_index_student(st, user_stu, c_student) != -1) {
                               te[index].addAssignmentToCourse(coursename, title, text, user_stu);
                               int st_index = admin.find_index_student(st, user_stu, c_student);
@@ -266,13 +288,15 @@ int main() {
                       else if (in == "7") {
                           cout << "Enter course name : ";
                           string co;
-                          cin >> co;
+                          cin.ignore();
+                          getline(cin, co);
                           te[index].printAssignmentsOfCourse(co);
                       }
                       else if (in == "8") {
                           cout << "Enter course name : ";
                           string co;
-                          cin >> co;
+                          cin.ignore();
+                          getline(cin, co);
                           te[index].viewAssignmentsOfCourse(co);
                           cout << "Press 1 to set grade for assignment\n";
                           cout << "Press 2 to back to menu\n";
@@ -282,11 +306,14 @@ int main() {
                               string title, s_user, course;
                               int gra = 0;
                               cout << "Enter course name : ";
-                              cin >> course;
+                              cin.ignore();
+                              getline(cin, course);
                               cout << "Enter title of homework : ";
-                              cin >> title;
+                              cin.ignore();
+                              getline(cin, title);
                               cout << "Enter student_username : ";
-                              cin >> s_user;
+                              cin.ignore();
+                              getline(cin, s_user);
                               cout << "Enter grade : ";
                               cin >> gra;
                               int i_st = admin.find_index_student(st, s_user, c_student);
@@ -307,13 +334,16 @@ int main() {
                           string __user;
                           string __pass;
                           cout << "Enter your username : ";
-                          cin >> __user;
+                          cin.ignore();
+                          getline(cin, __user);
                           cout << "Enter your password : ";
-                          cin >> __pass;
+                          cin.ignore();
+                          getline(cin, __pass);
                           if (admin.login_student(st, __user, __pass, c_student)) {
                               cout << "Enter your new password :";
                               string newpass;
-                              cin >> newpass;
+                              cin.ignore();
+                              getline(cin, newpass);
                               admin.change_pass_teacher(te, __user, newpass, c_teacher);
                               admin.saveTeachersToFile(te, c_teacher,courses,grades);
                           }
@@ -337,9 +367,11 @@ int main() {
               string user_;
               string pass_;
               cout << "Enter your username : ";
-              cin >> user_;
+              cin.ignore();
+              getline(cin, user_);
               cout << "Enter your password : ";
-              cin >> pass_;
+              cin.ignore();
+              getline(cin, pass_);
               int index = -1;
               if (admin.login_student(st, user_, pass_, c_student)) {
                   index = admin.find_index_student(st, user_, c_student);
@@ -365,13 +397,16 @@ int main() {
                           string __user;
                           string __pass;
                           cout << "Enter your username : ";
-                          cin >> __user;
+                          cin.ignore();
+                          getline(cin, __user);
                           cout << "Enter your password : ";
-                          cin >> __pass;
+                          cin.ignore();
+                          getline(cin, __pass);
                           if (admin.login_student(st, __user, __pass, c_student)) {
                               cout << "Enter your new password :";
                               string newpass;
-                              cin >> newpass;
+                              cin.ignore();
+                              getline(cin, newpass);
                               admin.change_pass_student(st, __user, newpass, c_student);
                               admin.saveStudentsToFile(st, c_student);
                           }
@@ -380,7 +415,8 @@ int main() {
                       else if (in == "3") {
                          string course;
                          cout<<"Enetr name of the course to see homework : ";
-                         cin >> course;
+                         cin.ignore();
+                         getline(cin, course);
                          st[index].printAssignmentsOfCourse(course);
                          puts("\n");
                          cout << "Press 1 to do your homework\n";
@@ -390,13 +426,17 @@ int main() {
                          if (yes == "1") {
                              string title,text,tename,course;
                              cout << "Enter course name : ";
-                             cin >> course;
+                             cin.ignore();
+                             getline(cin, course);
                              cout << "Enter title of homework : ";
-                             cin >> title;
+                             cin.ignore();
+                             getline(cin, title);
                              cout << "Enter a text for your homework : ";
-                             cin >> text;
+                             cin.ignore();
+                             getline(cin, text);
                              cout << "Enter name of the Teacher : ";
-                             cin >> tename;
+                             cin.ignore();
+                             getline(cin, tename);
                              int x = admin.find_index_teacher_name(te, tename, c_teacher);
                              if(x!=-1)
                              st[index].submitAssignmentToTeacher(title, text, te[x], course);

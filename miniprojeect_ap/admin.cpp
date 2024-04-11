@@ -1,6 +1,6 @@
 #include"admin.h"
 #include <fstream>
-#include<iostream>
+//#include<iostream>
 #include <string>
 using namespace std;
 
@@ -22,7 +22,7 @@ void Admin::saveTeachersToFile(const Teacher te[], int count, map<string, vector
     for (int i = 0; i < count; ++i) {
         outFile << te[i].get_name() << ',' << te[i].get_username() << ',' << te[i].get_password() << '\n';
     }
-    ////////////
+    
     for (const auto& courseEntry : courses) {
         string courseName = courseEntry.first;
         const vector<string>& students = courseEntry.second;
@@ -31,7 +31,6 @@ void Admin::saveTeachersToFile(const Teacher te[], int count, map<string, vector
             outFile << courseName << "," << student << "," << grade << "\n";
         }
     }
-    //////////////
 
     outFile.close();
     cout << "Teachers data saved to file successfully." << endl;
@@ -58,7 +57,6 @@ void Admin::readTeachersFromFile(Teacher te[], int& count) {
         te[count].set_password(password);
         count++;
     }
-    ////////////
         // Read courses, students, and grades
     while (getline(inFile, line)) {
         if (line.empty()) // Check for empty line, indicating end of teacher's data
@@ -74,7 +72,6 @@ void Admin::readTeachersFromFile(Teacher te[], int& count) {
         int grade = stoi(line);
         te[count].recordGrade(courseName, studentUsername, grade); // Assume you have a function to record grades
     }
-    ////////////
 
     inFile.close();
     cout << "Teachers data read from file successfully." << endl;
@@ -344,7 +341,6 @@ void Admin::restoreTeacher(const string& username) {
         }
     }
 
-    // Close the files
     inFile.close();
     outFile.close();
 
@@ -424,7 +420,6 @@ void Admin::softDeleteStudent(const string& username) {
         }
     }
 
-    // Close the files
     inFile.close();
     outFile.close();
 
@@ -464,7 +459,6 @@ void Admin::restoreStudent(const string& username) {
         }
     }
 
-    // Close the files
     inFile.close();
     outFile.close();
 

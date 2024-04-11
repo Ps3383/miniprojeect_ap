@@ -41,12 +41,7 @@ public:
 	void softDeleteStudent(const string& username);
 	void restoreStudent(const string& username);
 	void removeRestoredStudent(const string& username);
-
-	
-
 };
-
-
 
 #endif
 

@@ -9,29 +9,17 @@
 using namespace std;
 class Teacher : public Person {
 private:
-	//string Name;
-	//string Username;
-	//string Password;
-	int Teacher_ID;
 
+	int Teacher_ID;
 	map<string, vector<string>> courses; // Map to store students for each course
 	map<string, map<string, int>> grades; // Map to store grades for each student in each course
 	map<string, vector<Assignment>> courseAssignments;
-
 	static int count_teacher_obj;
 	static int number_t;
+
 public:
 	Teacher(string _name = "", string _username = "", string _password = "");
 	~Teacher();
-
-	//string get_name() const;
-	//void set_name(string __name);
-
-	//string get_username() const;
-	//void set_username(string __username);
-
-	//string get_password() const;
-	//void set_password(string __password);
 
 	int get_teacher_id();
 
@@ -46,7 +34,7 @@ public:
 
 
 	void addAssignmentToCourse(string course_name, string title, string text, string student_username);
-	// Print assignments for a specific course
+
 	void printAssignmentsOfCourse(string course_name);
 
 	void gradeAssignmentOfCourse(string course_name, string assignmentTitle, string student_username, int grade);

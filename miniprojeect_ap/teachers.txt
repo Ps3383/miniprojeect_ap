@@ -1,6 +1,3 @@
-q,q,q
-e,e,e
 r,r,r
-y,y,y
-parsa namdari,asd fg,fg 12
-parsa,a as,xs 123 
+as,dddd,dddddddd
+ss,ddd,c

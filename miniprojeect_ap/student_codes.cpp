@@ -23,25 +23,16 @@ Student::~Student() {
 //nothing now
 }
 
-//string Student::get_name() const { return Name; }
-//void Student::set_name(string _name) { Name = _name; }
-
-//string Student::get_username() const{ return Username; }
-//void Student::set_username(string _username) { Username = _username; }
-
-//string Student::get_password() const{ return Password; }
-//void Student::set_password(string _password) { Password = _password; }
-
 int Student::get_student_id() { return Student_ID; }
 
 int Student::get_count_student_obj() { return count_student_obj; }
 
 void Student::print_student(Student st) {
-	cout << st.get_name() << endl;
-	cout << st.get_username() << endl;
-	cout << st.get_password() << endl;
-	cout << st.get_student_id() << endl;
-	//cout << st.get_courses() << endl;
+    cout << "Name" << setw(20) << "Username" << setw(20) << "Password" << setw(20) << "Student_ID\n";
+    cout << st.get_name();
+    cout << setw(18) << st.get_username();
+    cout << setw(18) << st.get_password();
+    cout << setw(18) << "" << st.get_student_id() << endl;
 }
 
 void Student::set_course_grade(string course_name, int grade) {
@@ -81,7 +72,6 @@ void Student::printAssignmentsOfCourse(string course_name) {
         for (const auto& assignment : courseAssignments[course_name]) {
             cout << "Title: " << assignment.getTitle() << endl;
             cout << "Text: " << assignment.getText() << endl;
-            // Print more assignment details if needed
             if (assignment.getGrade() != -1) {
                 cout << "Grade: " << assignment.getGrade() << endl;
             }

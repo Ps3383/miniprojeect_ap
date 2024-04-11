@@ -22,24 +22,17 @@ Teacher::~Teacher() {
 	//nothing now
 }
 
-//string Teacher::get_name() const { return Name; }
-//void Teacher::set_name(string _name) { Name = _name; }
-
-//string Teacher::get_username() const { return Username; }
-//void Teacher::set_username(string _username) { Username = _username; }
-
-//string Teacher::get_password() const { return Password; }
-//void Teacher::set_password(string _password) { Password = _password; }
 
 int Teacher::get_teacher_id() { return Teacher_ID; }
 
 int Teacher::get_count_teacher_obj() { return count_teacher_obj; }
 
 void Teacher::print_teacher(Teacher te) {
-	cout << te.get_name() << endl;
-	cout << te.get_username() << endl;
-	cout << te.get_password() << endl;
-	cout << te.get_teacher_id() << endl;
+	cout << "Name" << setw(20) << "Username" << setw(20) << "Password" << setw(20) << "Teacher_ID\n";
+	cout << te.get_name();
+	cout << setw(18) << te.get_username();
+	cout << setw(18) << te.get_password();
+	cout << setw(18) <<""<< te.get_teacher_id() << endl;
 }
 
 
@@ -74,12 +67,12 @@ void Teacher::recordGrade(string course_name, string student_username, int grade
 }
 
 void Teacher::print_map_grades() {
-	int cc = 1;
-	cout << setw(20) << left << "Course Name" << setw(20) << left << "Student_username" << "Grade" << endl;
+	
+	cout << setw(20) << left << "Student_username" << setw(20) << left << "Course name" << "Grade" << endl;
 	for (const auto& student : grades) {
 		for (const auto& course : student.second) {
-			cout << cc << "." << setw(20) << left << course.first << setw(20) << left << student.first << course.second << endl;
-			++cc;
+			cout <<"." << setw(20) << left << course.first << setw(20) << left << student.first << course.second << endl;
+			
 		}
 	}
 }

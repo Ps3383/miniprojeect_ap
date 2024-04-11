@@ -22,14 +22,14 @@ Teacher::~Teacher() {
 	//nothing now
 }
 
-string Teacher::get_name() const { return Name; }
-void Teacher::set_name(string _name) { Name = _name; }
+//string Teacher::get_name() const { return Name; }
+//void Teacher::set_name(string _name) { Name = _name; }
 
-string Teacher::get_username() const { return Username; }
-void Teacher::set_username(string _username) { Username = _username; }
+//string Teacher::get_username() const { return Username; }
+//void Teacher::set_username(string _username) { Username = _username; }
 
-string Teacher::get_password() const { return Password; }
-void Teacher::set_password(string _password) { Password = _password; }
+//string Teacher::get_password() const { return Password; }
+//void Teacher::set_password(string _password) { Password = _password; }
 
 int Teacher::get_teacher_id() { return Teacher_ID; }
 
@@ -113,7 +113,7 @@ void Teacher::printAssignmentsOfCourse(string course_name) {
 void Teacher::gradeAssignmentOfCourse(string course_name, string assignmentTitle, string student_username, int grade) {
 	if (courseAssignments.find(course_name) != courseAssignments.end()) {
 		for (auto& assignment : courseAssignments[course_name]) {
-			if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == student_username) {
+			if (assignment.getTitle() == assignmentTitle && assignment.getStudentUsername() == student_username) {
 				assignment.setGrade(grade);
 				cout << "Grade for assignment '" << assignment.getTitle() << "' by student '" << student_username << "' in course '" << course_name << "' has been set to " << grade << endl;
 				return;
@@ -131,7 +131,7 @@ void Teacher::viewAssignmentsOfCourse(string course_name) {
 	// Check if the course has assignments
 	if (courseAssignments.find(course_name) != courseAssignments.end()) {
 		for (const auto& assignment : courseAssignments[course_name]) {
-			cout << "Student: " << assignment.getStudentName() << endl;
+			cout << "Student: " << assignment.getStudentUsername() << endl;
 			cout << "Title: " << assignment.getTitle() << endl;
 			cout << "Text: " << assignment.getText() << endl;
 			if (assignment.getGrade() != -1) {

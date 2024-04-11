@@ -5,12 +5,13 @@
 #include<vector>
 #include<map>
 #include"Assignment.h"
+#include"Person.h"
 using namespace std;
-class Teacher {
+class Teacher : public Person {
 private:
-	string Name;
-	string Username;
-	string Password;
+	//string Name;
+	//string Username;
+	//string Password;
 	int Teacher_ID;
 
 	map<string, vector<string>> courses; // Map to store students for each course
@@ -23,14 +24,14 @@ public:
 	Teacher(string _name = "", string _username = "", string _password = "");
 	~Teacher();
 
-	string get_name() const;
-	void set_name(string __name);
+	//string get_name() const;
+	//void set_name(string __name);
 
-	string get_username() const;
-	void set_username(string __username);
+	//string get_username() const;
+	//void set_username(string __username);
 
-	string get_password() const;
-	void set_password(string __password);
+	//string get_password() const;
+	//void set_password(string __password);
 
 	int get_teacher_id();
 

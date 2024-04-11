@@ -136,11 +136,13 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\miniprojeect_ap\miniprojeect_ap\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\miniprojeect_ap\miniprojeect_ap\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="student_codes.cpp" />
     <ClCompile Include="teacher_codes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assignment.h" />
+    <ClInclude Include="Person.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="teacher.h" />
   </ItemGroup>

@@ -23,14 +23,14 @@ Student::~Student() {
 //nothing now
 }
 
-string Student::get_name() const { return Name; }
-void Student::set_name(string _name) { Name = _name; }
+//string Student::get_name() const { return Name; }
+//void Student::set_name(string _name) { Name = _name; }
 
-string Student::get_username() const{ return Username; }
-void Student::set_username(string _username) { Username = _username; }
+//string Student::get_username() const{ return Username; }
+//void Student::set_username(string _username) { Username = _username; }
 
-string Student::get_password() const{ return Password; }
-void Student::set_password(string _password) { Password = _password; }
+//string Student::get_password() const{ return Password; }
+//void Student::set_password(string _password) { Password = _password; }
 
 int Student::get_student_id() { return Student_ID; }
 
@@ -100,7 +100,7 @@ void Student::printAssignmentsOfCourse(string course_name) {
 void Student::gradeAssignmentOfCourse(string course_name, string assignmentTitle, int grade) {
     if (courseAssignments.find(course_name) != courseAssignments.end()) {
         for (auto& assignment : courseAssignments[course_name]) {
-            if (assignment.getTitle() == assignmentTitle && assignment.getStudentName() == Name) {
+            if (assignment.getTitle() == assignmentTitle && assignment.getStudentUsername() == Name) {
                 assignment.setGrade(grade);
                 cout << "Grade for assignment '" << assignment.getTitle() << "' in course '" << course_name << "' has been set to " << grade << endl;
                 return;

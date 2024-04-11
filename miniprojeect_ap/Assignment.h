@@ -11,12 +11,12 @@ class Assignment {
 private:
     string title;
     string text;
-    string studentName;
+    string studentUsername;
     int grade;
 
 public:
-    Assignment(string _title = "", string _text = "", string _studentName = "", int _grade = -1)
-        : title(_title), text(_text), studentName(_studentName), grade(_grade) {}
+    Assignment(string _title = "", string _text = "", string _studentUsername = "", int _grade = -1)
+        : title(_title), text(_text), studentUsername(_studentUsername), grade(_grade) {}
 
     string getTitle() const;
     void setTitle(string _title);
@@ -24,8 +24,8 @@ public:
     string getText() const;
     void setText(string _text);
 
-    string getStudentName() const;
-    void setStudentName(string _studentName);
+    string getStudentUsername() const;
+    void setStudentUsername(string _studentName);
 
     int getGrade() const;
     void setGrade(int _grade);

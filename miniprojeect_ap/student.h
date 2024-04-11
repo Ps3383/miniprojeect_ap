@@ -6,12 +6,13 @@
 #include<map>
 #include"Assignment.h"
 #include"teacher.h"
+#include"Person.h"
 using namespace std;
-class Student {
+class Student : public Person {
 private:
-	string Name;
-	string Username;
-	string Password;
+	//string Name;
+	//string Username;
+	//string Password;
 	int    Student_ID;
 
 	map <string, int > Course_Grade;
@@ -23,14 +24,14 @@ public:
 	Student(string _name="", string _username="", string _password="");
 	~Student();
 
-	string get_name() const;
-	void set_name(string __name);
+	//string get_name() const;
+	//void set_name(string __name);
 
-	string get_username() const;
-	void set_username(string __username);
+	//string get_username() const;
+	//void set_username(string __username);
 
-	string get_password() const;
-	void set_password(string __password);
+	//string get_password() const;
+	//void set_password(string __password);
 
 	int get_student_id();
 

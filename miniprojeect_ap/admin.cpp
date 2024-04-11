@@ -1,6 +1,6 @@
 #include"admin.h"
 #include <fstream>
-//#include<iostream>
+#include<iostream>
 #include <string>
 using namespace std;
 

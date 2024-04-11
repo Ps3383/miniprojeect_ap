@@ -29,7 +29,7 @@ int main() {
     int c_teacher = 0;
     int c_student = 0;
     admin.readTeachersFromFile(te, c_teacher);
-    admin.readStudentsFromFile(st, c_student);///////nakamelllll
+    admin.readStudentsFromFile(st, c_student);
     map<string, vector<string>> courses;
     map<string, map<string, int>> grades;
       string input;

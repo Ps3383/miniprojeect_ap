@@ -234,6 +234,10 @@ int main() {
                           cin >> coursename;
                           te[index].create_course(coursename);
                           admin.saveTeachersToFile(te, c_teacher, courses, grades);
+                          cout << "Successfully Done\n";
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "2") {
                           string coursename;
@@ -248,6 +252,10 @@ int main() {
                               st[index_st].set_course_grade(coursename , -1);
                               admin.saveTeachersToFile(te, c_teacher, courses, grades);
                           }
+                          cout << "Successfully Done\n";
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "3") {
                           string coursename;
@@ -261,6 +269,10 @@ int main() {
                               te[index].removeStudentFromCourse(coursename, user_stu);
                               st[index_st].delete_course(coursename);
                               admin.saveTeachersToFile(te, c_teacher, courses, grades);
+                              cout << "Successfully Done\n";
+                              cout << "Press any key to back to menu : ";
+                              string v;
+                              cin >> v;
                           }
                       }
                       else if (in == "4") {
@@ -278,10 +290,18 @@ int main() {
                               st[index_st].set_course_grade(coursename, grade);
                               te[index].recordGrade(coursename, user_stu, grade);
                               admin.saveTeachersToFile(te, c_teacher, courses, grades);
+                              cout << "Successfully Done\n";
+                              cout << "Press any key to back to menu : ";
+                              string v;
+                              cin >> v;
                           }
                       }
                       else if (in == "5") {
                           te[index].print_map_grades();
+                          puts("\n");
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "6") {
                           string coursename, title, text,user_stu;
@@ -298,15 +318,21 @@ int main() {
                               te[index].addAssignmentToCourse(coursename, title, text, user_stu);
                               int st_index = admin.find_index_student(st, user_stu, c_student);
                               st[st_index].addAssignmentToCourse(coursename, title, text);
-
                           }
-
+                          cout << "Successfully Done\n";
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "7") {
                           cout << "Enter course name : ";
                           string co;
                           cin >> co;
                           te[index].printAssignmentsOfCourse(co);
+                          puts("\n");
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "8") {
                           cout << "Enter course name : ";
@@ -341,6 +367,10 @@ int main() {
                               string h;
                               cin >> h;
                           }
+                          cout << "Successfully Done\n";
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "9") {
                           string __user;
@@ -349,13 +379,17 @@ int main() {
                           cin >> __user;
                           cout << "Enter your password : ";
                           cin >> __pass;
-                          if (admin.login_student(st, __user, __pass, c_student)) {
+                          if (admin.login_teacher(te, __user, __pass, c_teacher)) {
                               cout << "Enter your new password :";
                               string newpass;
                               cin >> newpass;
                               admin.change_pass_teacher(te, __user, newpass, c_teacher);
                               admin.saveTeachersToFile(te, c_teacher,courses,grades);
                           }
+                          cout << "Successfully Done\n";
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
                       else if (in == "10") {
                           break;
@@ -407,6 +441,10 @@ int main() {
 
                       if (in == "1") {
                           st[index].print_map_course_grade();
+                          puts("\n");
+                          cout << "Press any key to back to menu : ";
+                          string v;
+                          cin >> v;
                       }
 
                       else if (in == "2") {
@@ -431,8 +469,13 @@ int main() {
                               cout << "Enter name of the Teacher : ";
                               cin >> tename;
                               int x = admin.find_index_teacher_name(te, tename, c_teacher);
-                              if (x != -1)
+                              if (x != -1) {
                                   st[index].submitAssignmentToTeacher(title, text, te[x], course);
+                                  cout << "Successfully Done\n";
+                                  cout << "Press any key to back to menu : ";
+                                  string v;
+                                  cin >> v;
+                              }
                           }
                           else if (yes == "2") {
 

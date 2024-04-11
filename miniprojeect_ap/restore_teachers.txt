@@ -1,2 +1,3 @@
 w,w,w
 parsa,namdari,123
+tesla,nikola,12
